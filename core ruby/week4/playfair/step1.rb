@@ -1,0 +1,34 @@
+class Ciphersquare
+  attr_reader :table
+  def initialize(key_phrase)
+    @key_phrase = key_phrase
+    @content = (@key_phrase.gsub(/j/i,"I") + [*('a'..'z')].join(' ') ).upcase.gsub(/[^A-Z]|J/,"").split("").uniq
+    @table = Array.new(5) {Array.new(5)}
+    @table.each_with_index do |row, row_index|
+      row.each_index do |col_index|
+        @table[row_index][col_index] = @content[5*row_index + col_index]
+      end
+    end
+  end
+  def to_s
+    @content_string = ""
+    @content.each_with_index do |character, index|
+      @content_string << character + " "
+      @content_string << "\n" if (index+1) % 5 == 0
+    end
+    return @content_string
+  end
+end
+
+
+class Playfaire
+  attr_reader :key_phrase, :cipher_square
+
+  def initialize(key_phrase)
+    @key_phrase = key_phrase
+    @cipher_square = Ciphersquare.new(@key_phrase)
+  end
+end
+
+
+playfair = Playfaire.new("I love Ruby")
