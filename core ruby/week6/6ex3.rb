@@ -19,7 +19,7 @@ while line = f.gets
 end
 f.close
 
-output = <<END_STR
+output = &lt;&lt;END_STR
 Character count: #{char_count}
 Character count (excluding spaces): #{char_count_no_space}
 Line count: #{line_count}
