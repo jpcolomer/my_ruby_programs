@@ -1,5 +1,5 @@
 require 'logger'
-$LOG = Logger.new('6ex3.log', 'monthly')
+$LOG = Logger.new('6ex4.log', 'monthly')
 
 f = File.open('text.txt','r')
 line_count = 0
