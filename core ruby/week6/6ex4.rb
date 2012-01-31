@@ -28,6 +28,7 @@ Sentence count: #{sentence_count}
 Paragraph count: #{paragraph_count}
 END_STR
 
+
 begin
   output << "Average number of words per sentence: #{(word_count.to_f/sentence_count).round(2)}"
 rescue Exception => e
@@ -35,7 +36,12 @@ rescue Exception => e
   output << "Average number of words per sentence: undefined"
 end
 output << "\n"
-output << "Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}"
+begin
+  output << "Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}"
+rescue Exception => e
+  $LOG.error "Error in division!: #{e}"
+  output << "Average number of sentences per paragraph: undefined"
+end
 
 $LOG.debug(output)
 puts output
