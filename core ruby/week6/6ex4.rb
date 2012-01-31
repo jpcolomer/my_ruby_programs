@@ -34,7 +34,7 @@ rescue Exception => e
   $LOG.error "Error in division!: #{e}"
   output << "Average number of words per sentence: undefined"
 end
-
+output << "\n"
 output << "Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}"
 
 $LOG.debug(output)
