@@ -1,0 +1,34 @@
+require 'logger'
+$LOG = Logger.new('6ex3.log', 'monthly')
+
+f = File.open('text.txt','r')
+line_count = 0
+char_count = 0
+char_count_no_space = 0
+word_count = 0
+sentence_count = 0
+paragraph_count = 1
+
+while line = f.gets
+  line_count += 1
+  char_count += line.strip.length
+  char_count_no_space += line.strip.gsub(/ /, '').length
+  word_count += line.strip.split(/ /).length
+  sentence_count += line.count(".!?")
+  paragraph_count += 1 if line == "\n"
+end
+f.close
+
+output = <<END_STR
+Character count: #{char_count}
+Character count (excluding spaces): #{char_count_no_space}
+Line count: #{line_count}
+Word count: #{word_count}
+Sentence count: #{sentence_count}
+Paragraph count: #{paragraph_count}
+Average number of words per sentence: #{(word_count.to_f/sentence_count).round(2)}
+Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}
+END_STR
+
+$LOG.debug(output)
+puts output

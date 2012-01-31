@@ -19,13 +19,14 @@ class Id3_tag
       @id3_tag.each do |tag, value|
         instance_variable_set("@#{tag}",value)
 
-        eigenclass = class<<self; self; end
-        eigenclass.class_eval do
+#        eigenclass = class<<self; self; end
+#        eigenclass.class_eval do
+        self.singleton_class.class_eval do
           attr_reader tag
         end
       end
     else
-      raise ArgumentError.new("The mp3 file #{mp3file} doesn't have and ID3 tag")
+      raise ArgumentError.new("The mp3 file #{mp3file} doesn't have an ID3 tag")
     end
   end
 

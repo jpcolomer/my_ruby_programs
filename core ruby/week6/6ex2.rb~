@@ -25,7 +25,7 @@ class Id3_tag
         end
       end
     else
-      raise ArgumentError.new("The mp3 file #{mp3file} doesn't have and ID3 tag")
+      raise ArgumentError.new("The mp3 file #{mp3file} doesn't have an ID3 tag")
     end
   end
 

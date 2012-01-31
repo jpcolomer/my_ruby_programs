@@ -12,7 +12,7 @@ while line = f.gets
   char_count_no_space = char_count_no_space + line.strip.gsub(/ /, '').length
   word_count = word_count + line.split(/ /).length
   sentence_count = sentence_count + line.count(".!?")
-  paragraph_count = paragraph_count + 1 if line == "\n" #+ line.scan("\n").length
+  paragraph_count = paragraph_count + line.count("\n\n")
 end
 
 puts "Character count: %d" % char_count
