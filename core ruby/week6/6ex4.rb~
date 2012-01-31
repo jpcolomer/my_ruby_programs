@@ -30,5 +30,4 @@ Average number of words per sentence: #{(word_count.to_f/sentence_count).round(2
 Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}
 END_STR
 
-$LOG.debug(output)
 puts output
