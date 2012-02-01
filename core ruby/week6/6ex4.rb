@@ -30,16 +30,18 @@ END_STR
 
 
 begin
+  raise ZeroDivisionError, 'The number of sentences is 0' if sentence_count == 0
   output << "Average number of words per sentence: #{(word_count.to_f/sentence_count).round(2)}"
-rescue Exception => e
-  $LOG.error "Error in division!: #{e}"
+rescue
+  $LOG.error "Error in division!: sentence count is 0"
   output << "Average number of words per sentence: undefined"
 end
 output << "\n"
 begin
+  raise ZeroDivisionError, 'The number of paragraphs is 0' if paragraph_count == 0
   output << "Average number of sentences per paragraph: #{(sentence_count.to_f/paragraph_count).round(2)}"
-rescue Exception => e
-  $LOG.error "Error in division!: #{e}"
+rescue
+  $LOG.error "Error in division!: paragraph count is 0"
   output << "Average number of sentences per paragraph: undefined"
 end
 
